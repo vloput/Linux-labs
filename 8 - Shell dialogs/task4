@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#	Currency rates
+
+while [ 1 == 1 ]
+do
+gdialog --title "Курсы валют" \
+	--inputbox "Введите валюту:" 5 20 2>_temp.txt
+  if [ "$(cat _temp.txt)" == "USD" ]
+  then
+    gdialog --infobox "1 USD = 2.0068 BYN" 8 16
+  elif [ "$(cat _temp.txt)" == "EUR" ]
+  then
+    gdialog --infobox "1 EUR = 2.3646 BYN" 8 16
+  elif [ "$(cat _temp.txt)" == "PLN" ]
+  then
+    gdialog --infobox "10 PLN = 5.5815 BYN" 8 16
+  elif [ "$(cat _temp.txt)" == "exit" ]
+  then
+    rm _temp.txt
+    exit 0
+  else
+    gdialog --infobox "Валюта не найдена" 8 16
+  fi
+done
+
+

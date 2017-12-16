@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#	Create currency exchange dialog
+#	User enter wished currency in text field: USD, EUR, PLN
+#	Enter "exit" to close dialog
+
+gdialog --title "Обмен валют" \
+	--inputbox "Внесите деньги:" 10 20 2>_balance.txt
+
+let USD=20068
+let EUR=23646
+let PLN=5581
+let summ=$(cat _balance.txt)
+
+gdialog --title "Купить валюту" \
+	--menu "Выберите валюту:" 10 20 3 \
+	"USD" "Доллар США" "EUR" "Евро" \
+	"PLN" "Польский злотый" 2>_choice.txt
+
+(( summ=summ*10000 ))
+(( USD=summ/USD ))
+(( EUR=summ/EUR ))
+(( PLN=summ/PLN ))
+
+    case $(cat _choice.txt) in
+	USD) gdialog --infobox "Вы можете купить $USD USD." 8 16
+	  ;;
+	EUR) gdialog --infobox "Вы можете купить $EUR EUR." 8 16
+	  ;;
+	PLN) gdialog --infobox "Вы можете купить $PLN PLN." 8 16
+	  ;;
+    esac
+    rm _choice.txt
+    rm _balance.txt
+
+exit 0

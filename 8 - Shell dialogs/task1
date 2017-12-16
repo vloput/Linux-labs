@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#	Create nested dialog
+#	
+
+gdialog --title "Задание 1" \
+	--yesno "Показать праздники за этот месяц?" 10 40
+  case $? in
+    0) calendar
+	;;
+    1) gdialog --title "Вы уверены?" --yesno "Может показать?" 10 20
+         case $? in
+           0) calendar
+		;;
+           1) gdialog --msgbox "Нет, так нет..." 10 20
+		;;
+         esac
+	;;
+  esac
+exit 0

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#	Currency exchange
+#	User choose currency in menu
+
+gdialog --title "Курсы валют" \
+	--menu "Выберите валюту:" 10 20 3 \
+	"USD" "Доллар США" "EUR" "Евро" \
+	"PLN" "Польский злотый" 2> _choice.txt
+
+    case $(cat _choice.txt) in
+	USD) gdialog --infobox "1 USD = 2.0068 BYN" 8 16
+	  ;;
+	EUR) gdialog --infobox "1 EUR = 2.3646 BYN" 8 16
+	  ;;
+	PLN) gdialog --infobox "10 PLN = 5.5815 BYN" 8 16
+	  ;;
+    esac
+    rm _choice.txt
+
+exit 0

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#	User enter his name and profession
+#	Output like: "You're dantist Bob."
+
+gdialog --title "Задание 2" \
+	--inputbox "Введите ваше имя:" 10 20 2> _name.txt
+
+gdialog --title "Задание 2" \
+	--inputbox "Введите вашу профессию:" 10 20 2> _job.txt
+
+gdialog --title "Результат" \
+	--msgbox "Вы $(cat _job.txt) по имени $(cat _name.txt)." 10 20
+
+rm _name.txt
+rm _job.txt
